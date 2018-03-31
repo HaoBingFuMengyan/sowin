@@ -30,6 +30,7 @@ public class AdminController {
 	@GetMapping(value="login.shtml")
 	public String login(Model model){
 		model.addAttribute("debug","");
+		logger.info("欢迎登录");
 		return "sys/login";
 	}
 	
