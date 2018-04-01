@@ -8,6 +8,11 @@
   <artifactId>master</artifactId>
   
   <dependencies>
+	  	<!--tomcat支持-->
+	    <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-tomcat</artifactId>
+	    </dependency>
   		<!-- 支持web -->
   		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -19,6 +24,7 @@
 		    <artifactId>tomcat-embed-jasper</artifactId>
 		    <scope>provided</scope>
 		</dependency>
+	  	<!--jsp标签库-->
 		<dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>jstl</artifactId>
