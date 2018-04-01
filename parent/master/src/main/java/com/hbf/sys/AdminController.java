@@ -28,7 +28,7 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@GetMapping(value="login.shtml")
-	public String login(Model model,HttpServletRequest request){
+	public String login(Model model){
 		model.addAttribute("debug","");
 		logger.info("欢迎登录");
 		return "sys/login";
