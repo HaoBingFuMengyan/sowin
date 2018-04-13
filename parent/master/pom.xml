@@ -8,6 +8,12 @@
   <artifactId>master</artifactId>
   
   <dependencies>
+	  <!-- servlet 依赖包 -->
+	  <dependency>
+		  <groupId>javax.servlet</groupId>
+		  <artifactId>javax.servlet-api</artifactId>
+		  <scope>provided</scope>
+	  </dependency>
 	  	<!--tomcat支持-->
 	    <dependency>
 		    <groupId>org.springframework.boot</groupId>
