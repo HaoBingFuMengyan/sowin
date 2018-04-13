@@ -31,7 +31,7 @@ public class AdminController {
 	public String login(Model model){
 		model.addAttribute("debug","");
 		logger.info("欢迎登录");
-		return "sys/login";
+		return "login";
 	}
 	
 	@PostMapping(value="login.shtml")
