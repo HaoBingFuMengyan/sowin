@@ -33,7 +33,7 @@ public class ShiroConfiguration {
         //Shiro的核心安全接口,这个属性是必须的
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //要求登录时的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录下的"/login.jsp"页面
-        shiroFilterFactoryBean.setLoginUrl("/login.shtml");
+        shiroFilterFactoryBean.setLoginUrl("/login.html");
         //登录成功后要跳转的连接,逻辑也可以自定义，例如返回上次请求的页面
         shiroFilterFactoryBean.setSuccessUrl("/index.shtml");
         //用户访问未对其授权的资源时,所显示的连接
@@ -49,10 +49,10 @@ public class ShiroConfiguration {
         //必须将 /**放在最为下边！！！！！！！！！！！！！
         //不拦截的链接
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
-        filterChainDefinitionMap.put("/login", "anon");//anon 可以理解为不拦截
-        filterChainDefinitionMap.put("/register", "anon");
-        filterChainDefinitionMap.put("/plugins/**", "anon");
-        filterChainDefinitionMap.put("/dists/img/*", "anon");
+        filterChainDefinitionMap.put("/login.html", "anon");//anon 可以理解为不拦截
+        filterChainDefinitionMap.put("/static/css/**", "anon");
+        filterChainDefinitionMap.put("/static/images/**", "anon");
+        filterChainDefinitionMap.put("/static/jquery/jquery-2.1.1.min.js", "anon");
         filterChainDefinitionMap.put("/**", "authc");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

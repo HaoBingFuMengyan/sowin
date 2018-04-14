@@ -27,17 +27,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
-	@GetMapping(value="login.shtml")
+	@GetMapping(value="login.html")
 	public String login(Model model){
 		model.addAttribute("debug","");
 		logger.info("欢迎登录");
 		return "sys/login";
 	}
 	
-	@PostMapping(value="login.shtml")
+	@PostMapping(value="login.html")
 	public String login(@Valid Operator operator,RedirectAttributes redirectAttributes,BindingResult bindingResult){
 		 if (bindingResult.hasErrors()) {
-	            return "login";
+	            return "sys/login";
 	        }
 	        String loginName = operator.getSusername();
 	        logger.info("准备登陆用户 => {}", loginName);
@@ -75,7 +75,7 @@ public class AdminController {
 	            return "redirect:/index.shtml";
 	        } else {
 	            token.clear();
-	            return "redirect:/login.shtml";
+	            return "redirect:/login.html";
 	        }
 	}
 	
