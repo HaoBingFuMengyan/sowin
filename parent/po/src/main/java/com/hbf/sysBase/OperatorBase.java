@@ -1,5 +1,7 @@
 package com.hbf.sysBase;
 
+import com.hbf.entity.BaseEntity;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,16 +13,8 @@ import javax.persistence.MappedSuperclass;
 
 
 @MappedSuperclass
-public class OperatorBase implements Serializable{
+public class OperatorBase extends BaseEntity{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private   String id;
 	private   String soperatorno; //管理员编号 String
 	private   String susername; //用户名 String
 	private   String spassword; //密码 String
@@ -38,14 +32,7 @@ public class OperatorBase implements Serializable{
 	private   String smodifyoperator; //修改人 String
 	private   String sjpname; //简拼名 String
 	private   String spyname; //全拼名 String
-	
-	
-		public String getId() {
-			return id;
-		}
-		public void setId(String id) {
-			this.id = id;
-		}
+
 	   /**
 		管理员编号 String
 		*/

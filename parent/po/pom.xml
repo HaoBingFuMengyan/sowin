@@ -6,4 +6,15 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>po</artifactId>
+
+
+  <dependencies>
+    <!-- 引入heart模块 -->
+    <dependency>
+      <groupId>com.hbf</groupId>
+      <artifactId>heart</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
 </project>

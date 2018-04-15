@@ -6,9 +6,8 @@ import javax.persistence.Table;
 import com.hbf.hyBase.MemberBase;
 
 @Entity
-@Table(name="hbf_member")
+@Table(name="hy_member")
 public class Member extends MemberBase {
-	private static final long serialVersionUID = 1L;
 
 
 }

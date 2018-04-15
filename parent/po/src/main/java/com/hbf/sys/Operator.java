@@ -10,8 +10,6 @@ import com.hbf.sysBase.OperatorBase;
 @Table(name="sys_operator")
 public class Operator extends OperatorBase{
 
-	private static final long serialVersionUID = 1L;
-
 	
 	
 }
