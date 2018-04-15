@@ -89,11 +89,18 @@ public class AdminController {
 	public String index(Model model,HttpServletRequest request){
 		return "sys/index";
 	}
-	
-	
+	@GetMapping(value = "main.shtml")
+	public String main(Model model,HttpServletRequest request){
+		return "sys/main";
+	}
+
+	/**
+	 * 退出
+	 * @return
+	 */
 	@GetMapping(value = "logout.shtml")
 	public String logout() {
 		return "sys/login";
 	}
-	
+
 }

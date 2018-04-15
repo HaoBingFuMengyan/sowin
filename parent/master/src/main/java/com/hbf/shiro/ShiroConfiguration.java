@@ -50,6 +50,7 @@ public class ShiroConfiguration {
         //不拦截的链接
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
         filterChainDefinitionMap.put("/login.html", "anon");//anon 可以理解为不拦截
+        filterChainDefinitionMap.put("/captcha.html", "anon");
         filterChainDefinitionMap.put("/static/css/**", "anon");
         filterChainDefinitionMap.put("/static/images/**", "anon");
         filterChainDefinitionMap.put("/static/jquery/jquery-2.1.1.min.js", "anon");
