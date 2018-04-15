@@ -14,6 +14,7 @@ public class UserRealm extends AbstractUserRealm {
 		Set<String> userRoles = new HashSet<>();
         Set<String> userPermissions = new HashSet<>();
         //TODO 获取当前用户下拥有的所有角色列表,及权限
+
         return new UserRolesAndPermissions(userRoles, userPermissions);
 	}
 
