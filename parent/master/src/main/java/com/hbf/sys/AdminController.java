@@ -78,7 +78,14 @@ public class AdminController {
 	            return "redirect:/login.html";
 	        }
 	}
-	
+	/**
+	 * 退出
+	 * @return
+	 */
+	@GetMapping(value = "logout.shtml")
+	public String logout() {
+		return "sys/login";
+	}
 	/**
 	 * 首页
 	 * @param model
@@ -94,13 +101,9 @@ public class AdminController {
 		return "sys/main";
 	}
 
-	/**
-	 * 退出
-	 * @return
-	 */
-	@GetMapping(value = "logout.shtml")
-	public String logout() {
-		return "sys/login";
-	}
 
+	@RequestMapping(value = "news/newsList.shtml")
+	public String newsList(Model model,HttpServletRequest request){
+		return "sys/newsList";
+	}
 }

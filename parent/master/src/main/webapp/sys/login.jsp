@@ -10,6 +10,7 @@
 	<meta http-equiv="Cache-Control" content="no-cache">
 	<meta http-equiv="Expires" content="0">
 	<title>后台管理</title>
+	<link rel="icon" href="${ctxStatic}/layui-admin/favicon.ico">
 	<link href="${ctxStatic}/css/login.css" rel="stylesheet" type="text/css" />
 
 	<script type="text/javascript" src="${ctxStatic}/jquery/jquery-2.1.1.min.js"></script>

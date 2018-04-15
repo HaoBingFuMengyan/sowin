@@ -1,6 +1,7 @@
 function navBar(data){
 	var ulHtml = '<ul class="layui-nav layui-nav-tree">';
 	for(var i=0;i<data.length;i++){
+        ulHtml += '<shiro:hasPermission name="'+data[i].shiro+'">'
 		if(data[i].spread){
 			ulHtml += '<li class="layui-nav-item layui-nav-itemed">';
 		}else{
@@ -20,6 +21,7 @@ function navBar(data){
 			ulHtml += '</a>'
 			ulHtml += '<dl class="layui-nav-child">';
 			for(var j=0;j<data[i].children.length;j++){
+                ulHtml += '<shiro:hasPermission name="'+data[i].shiro+'">'
 				ulHtml += '<dd><a href="javascript:;" data-url="'+data[i].children[j].href+'">';
 				if(data[i].children[j].icon != undefined && data[i].children[j].icon != ''){
 					if(data[i].children[j].icon.indexOf("icon-") != -1){
@@ -29,6 +31,7 @@ function navBar(data){
 					}
 				}
 				ulHtml += '<cite>'+data[i].children[j].title+'</cite></a></dd>';
+                ulHtml += '</shiro:hasPermission>'
 			}
 			ulHtml += "</dl>"
 		}else{
@@ -43,6 +46,7 @@ function navBar(data){
 			ulHtml += '<cite>'+data[i].title+'</cite></a>';
 		}
 		ulHtml += '</li>'
+        ulHtml += '</shiro:hasPermission>'
 	}
 	ulHtml += '</ul>';
 	return ulHtml;
