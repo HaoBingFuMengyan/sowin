@@ -1,6 +1,6 @@
 var navs = [{
 	"title" : "后台首页",
-	"shiro": "shou:ye",
+	"shiro": "main:query",
 	"icon" : "icon-computer",
 	"href" : "main.shtml",
 	"spread" : true

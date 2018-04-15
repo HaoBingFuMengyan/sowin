@@ -10,6 +10,7 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +34,7 @@ public class AdminController {
 		logger.info("欢迎登录");
 		return "sys/login";
 	}
-	
+
 	@PostMapping(value="login.html")
 	public String login(@Valid Operator operator,RedirectAttributes redirectAttributes,BindingResult bindingResult){
 		 if (bindingResult.hasErrors()) {
@@ -100,7 +101,6 @@ public class AdminController {
 	public String main(Model model,HttpServletRequest request){
 		return "sys/main";
 	}
-
 
 	@RequestMapping(value = "news/newsList.shtml")
 	public String newsList(Model model,HttpServletRequest request){
