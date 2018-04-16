@@ -46,6 +46,20 @@
 			"icon": "icon-vip",
 			"href": "page/user/userGrade.html",
 			"spread": false
+		},
+		{
+			"title": "员工账号",
+			"icon": "&#xe630;",
+			"href": "",
+			"spread": false,
+			"children": [
+				{
+					"title": "角色管理",
+					"icon": "&#xe61c;",
+					"href": "role/list.shtml",
+					"spread": false
+				}
+			]
 		}
 	],
 	"systemeSttings": [
