@@ -13,6 +13,7 @@
 	<link rel="icon" href="${ctxStatic}/layui-admin/favicon.ico">
 	<link href="${ctxStatic}/css/login.css" rel="stylesheet" type="text/css" />
 
+	<%--引入jquery插件--%>
 	<script type="text/javascript" src="${ctxStatic}/jquery/jquery-2.1.1.min.js"></script>
 
 	<script type="text/javascript">
