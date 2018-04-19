@@ -12,6 +12,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
+/**
+ * @author haobingfu
+ * 生成登录验证码
+ */
 public class RandomValidateCodeUtil {
     public static final String KAPTCHA_SESSION_KEY= "KAPTCHA_SESSION_KEY";//放到session中的key
     private String randString = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";//随机产生只有数字的字符串 private String
