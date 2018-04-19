@@ -23,9 +23,9 @@
             });
         });
 
-        <%--function refreshCaptcha() {--%>
-            <%--$('#captchaImg').hide().attr('src','${ctx}/captcha.html?a=' + Math.floor(Math.random()*100)).fadeIn();--%>
-        <%--}--%>
+        function refreshCaptcha() {
+            $('#captchaImg').hide().attr('src','${ctx}/captcha.html?a=' + Math.floor(Math.random()*100)).fadeIn();
+        }
 	</script>
 </head>
 

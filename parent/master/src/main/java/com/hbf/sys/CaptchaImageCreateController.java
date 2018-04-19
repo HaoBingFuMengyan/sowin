@@ -7,6 +7,9 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hbf.utils.RandomValidateCodeUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,39 +22,25 @@ import com.google.code.kaptcha.Producer;
 @RequestMapping("/")
 public class CaptchaImageCreateController {
 
-    private Producer captchaProducer = null;
-
-//    @Autowired
-    public void setCaptchaProducer(Producer captchaProducer) {
-        this.captchaProducer = captchaProducer;
-    }
+    private static final Logger logger = LoggerFactory.getLogger(CaptchaImageCreateController.class);
 
     @RequestMapping("captcha.html")
-    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
 
-        response.setDateHeader("Expires", 0);
-        // Set standard HTTP/1.1 no-cache headers.
-        response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-        // Set IE extended HTTP/1.1 no-cache headers (use addHeader).
-        response.addHeader("Cache-Control", "post-check=0, pre-check=0");
-        // Set standard HTTP/1.0 no-cache header.
-        response.setHeader("Pragma", "no-cache");
-        // return a jpeg
-        response.setContentType("image/jpeg");
-        // create the text for the image
-        String capText = captchaProducer.createText();
-        // store the text in the session
-        request.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
-        // create the image with the text
-        BufferedImage bi = captchaProducer.createImage(capText);
-
-        ServletOutputStream out = response.getOutputStream();
-        // write the data out
-        ImageIO.write(bi, "jpg", out);
         try {
-            out.flush();
-        } finally {
-            out.close();
+            response.setDateHeader("Expires", 0);
+            // Set standard HTTP/1.1 no-cache headers.
+            response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+            // Set IE extended HTTP/1.1 no-cache headers (use addHeader).
+            response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+            // Set standard HTTP/1.0 no-cache header.
+            response.setHeader("Pragma", "no-cache");//设置响应头信息，告诉浏览器不要缓存此内容
+            // return a jpeg
+            response.setContentType("image/jpeg");//设置相应类型,告诉浏览器输出的内容为图片
+            RandomValidateCodeUtil randomValidateCode = new RandomValidateCodeUtil();
+            randomValidateCode.getRandcode(request, response);//输出验证码图片方法
+        } catch (Exception e) {
+            logger.error("获取验证码失败>>>>   ", e);
         }
         return null;
     }
