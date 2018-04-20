@@ -14,5 +14,26 @@
       <artifactId>javax.servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
+
+    <!-- shiro依赖 -->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-spring</artifactId>
+      <version>1.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-ehcache</artifactId>
+      <version>1.3.2</version>
+    </dependency>
+
+    <!-- sitemesh -->
+    <dependency>
+      <groupId>pinyin4j</groupId>
+      <artifactId>pinyin4j</artifactId>
+      <version>2.5.0</version>
+    </dependency>
+
+
   </dependencies>
 </project>
