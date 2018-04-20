@@ -54,8 +54,14 @@
 			"spread": false,
 			"children": [
 				{
+					"title": "账号管理",
+					"icon": "&#xe6af;",
+					"href": "",
+					"spread": false
+				},
+				{
 					"title": "角色管理",
-					"icon": "&#xe61c;",
+					"icon": "&#xe63c;",
 					"href": "role/list.shtml",
 					"spread": false
 				}
