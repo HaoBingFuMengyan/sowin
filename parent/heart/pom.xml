@@ -14,6 +14,11 @@
       <artifactId>javax.servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
+    <!-- 支持web -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
 
     <!-- shiro依赖 -->
     <dependency>

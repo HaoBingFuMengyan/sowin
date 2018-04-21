@@ -89,6 +89,25 @@
 			"icon": "&#xe857;",
 			"href": "page/systemSetting/icons.html",
 			"spread": false
+		},{
+			"title": "系统管理",
+			"icon": "&#xe630;",
+			"href": "",
+			"spread": false,
+			"children": [
+				{
+					"title": "后台权限码管理",
+					"icon": "&#xe6af;",
+					"href": "",
+					"spread": false
+				},
+				{
+					"title": "会员权限码管理",
+					"icon": "&#xe63c;",
+					"href": "",
+					"spread": false
+				}
+			]
 		}
 	],
 	"seraphApi": [
