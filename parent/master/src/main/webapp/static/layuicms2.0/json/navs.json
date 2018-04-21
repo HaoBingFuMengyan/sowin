@@ -98,7 +98,7 @@
 				{
 					"title": "后台权限码管理",
 					"icon": "&#xe6af;",
-					"href": "",
+					"href": "right/list.shtml",
 					"spread": false
 				},
 				{
