@@ -11,7 +11,7 @@ public class MemberService {
 	
 	@Autowired
 	private MemberDao memberDao;
-	
+
 	public List<Member> sys(){
 		System.out.println("service");
 		return this.memberDao.findAll();
