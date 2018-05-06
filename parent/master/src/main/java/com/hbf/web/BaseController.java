@@ -55,19 +55,19 @@ public abstract class BaseController<T,V> {
      * @param request
      * @return
      */
-    @RequestMapping(value = "list.shtml")
-    protected String dolist(
-            @RequestParam(value = "start", defaultValue = "0") int start,
-            @RequestParam(value = "limit", defaultValue = PageUtils.Limit) int limit,
-            @RequestParam(value = "sort", defaultValue = "") String sort,Model model,
-            ServletRequest request) {
-        if(B.Y(sort))
-            sort = getDefaultSort();
-        checkPermissionQuery(request);
-        Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, model);
-        model.addAttribute("list", list(start, limit, sort, searchParams));
-        return getPackName()+"/"+getObjectName();
-    }
+//    @RequestMapping(value = "list.shtml")
+//    protected String dolist(
+//            @RequestParam(value = "start", defaultValue = "0") int start,
+//            @RequestParam(value = "limit", defaultValue = PageUtils.Limit) int limit,
+//            @RequestParam(value = "sort", defaultValue = "") String sort,Model model,
+//            ServletRequest request) {
+//        if(B.Y(sort))
+//            sort = getDefaultSort();
+//        checkPermissionQuery(request);
+//        Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, model);
+//        model.addAttribute("list", list(start, limit, sort, searchParams));
+//        return getPackName()+"/"+getObjectName();
+//    }
 
     /**
      * 默认查询权限
@@ -78,15 +78,15 @@ public abstract class BaseController<T,V> {
                 this.getObjectName() + ":" + "query");
     }
 
-    public Page<T> list(int start, int limit, String sort, Map<String,Object> searchParams) {
-        String[] s=new String[]{""};
-        if(StringUtils.isNotEmpty(sort)){
-            s=sort.split("\\,");
-        }
-        PageRequest page = PageUtils.page(start, limit,s);
-
-        return getBaseService().listPage(page, searchParams);
-
-    }
+//    public Page<T> list(int start, int limit, String sort, Map<String,Object> searchParams) {
+//        String[] s=new String[]{""};
+//        if(StringUtils.isNotEmpty(sort)){
+//            s=sort.split("\\,");
+//        }
+//        PageRequest page = PageUtils.page(start, limit,s);
+//
+//        return getBaseService().listPage(page, searchParams);
+//
+//    }
 
 }

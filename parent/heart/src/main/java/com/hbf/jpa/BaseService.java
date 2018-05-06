@@ -30,25 +30,25 @@ public abstract class BaseService<T> {
 
     public static Logger log = LoggerFactory.getLogger(BaseService.class);
 
-    public Class<T> getDomainClass() {
-        return this.getBaseDao().getDomainClass();
-    }
+//    public Class<T> getDomainClass() {
+//        return this.getBaseDao().getDomainClass();
+//    }
 
     /**
      * 获取所有单据编号信息列表 List<Product>
      */
-    @Transactional(readOnly = true)
-    public Page<T> listPage(Pageable page, Map<String, Object> searchParams) {
-
-        Specification<T> spec;
-        if (searchParams != null && searchParams.size() > 0) {
-            Map<String, SearchFilter> ss = SearchFilter.parse(searchParams);
-            spec = DynamicSpecifications.bySearchFilter(ss.values(),
-                    getBaseDao().getDomainClass());
-        } else
-            spec = null;
-        return getBaseDao().findAll(spec, page);
-    }
+//    @Transactional(readOnly = true)
+//    public Page<T> listPage(Pageable page, Map<String, Object> searchParams) {
+//
+//        Specification<T> spec;
+//        if (searchParams != null && searchParams.size() > 0) {
+//            Map<String, SearchFilter> ss = SearchFilter.parse(searchParams);
+//            spec = DynamicSpecifications.bySearchFilter(ss.values(),
+//                    getBaseDao().getDomainClass());
+//        } else
+//            spec = null;
+//        return getBaseDao().findAll(spec, page);
+//    }
 
     @Transactional(readOnly = true)
     public Page<T> listPage(Pageable page, Specification<T> spec) {
@@ -56,26 +56,26 @@ public abstract class BaseService<T> {
         return getBaseDao().findAll(spec, page);
     }
 
-    @Transactional(readOnly = true)
-    public Page<T> listPage(Pageable page, Map<String, Object> searchParams,
-                            SearchFilter... searchFilters) {
-
-        Specification<T> spec;
-        Map<String, SearchFilter> ss;
-        if (searchParams != null)
-            ss = SearchFilter.parse(searchParams);
-        else
-            ss = Maps.newHashMap();
-
-        for (SearchFilter sf : searchFilters) {
-            ss.put(sf.fieldName, sf);
-        }
-        spec = DynamicSpecifications.bySearchFilter(ss.values(), getBaseDao()
-                .getDomainClass());
-
-        return getBaseDao().findAll(spec, page);
-        // return getBaseDao().findAll( spec,page);
-    }
+//    @Transactional(readOnly = true)
+//    public Page<T> listPage(Pageable page, Map<String, Object> searchParams,
+//                            SearchFilter... searchFilters) {
+//
+//        Specification<T> spec;
+//        Map<String, SearchFilter> ss;
+//        if (searchParams != null)
+//            ss = SearchFilter.parse(searchParams);
+//        else
+//            ss = Maps.newHashMap();
+//
+//        for (SearchFilter sf : searchFilters) {
+//            ss.put(sf.fieldName, sf);
+//        }
+//        spec = DynamicSpecifications.bySearchFilter(ss.values(), getBaseDao()
+//                .getDomainClass());
+//
+//        return getBaseDao().findAll(spec, page);
+//        // return getBaseDao().findAll( spec,page);
+//    }
 
     /**
      * @param page
@@ -83,62 +83,62 @@ public abstract class BaseService<T> {
      * @param diySpec      构造的查询条件 需要fetch 等情况
      * @return
      */
-    @Transactional(readOnly = true)
-    public Page<T> listPage(Pageable page, Map<String, Object> searchParams,
-                            final Specification<T> diySpec) {
+//    @Transactional(readOnly = true)
+//    public Page<T> listPage(Pageable page, Map<String, Object> searchParams,
+//                            final Specification<T> diySpec) {
+//
+//        final Specification<T> spec;
+//        Map<String, SearchFilter> ss;
+//        if (searchParams != null)
+//            ss = SearchFilter.parse(searchParams);
+//        else
+//            ss = Maps.newHashMap();
+//
+//        spec = DynamicSpecifications.bySearchFilter(ss.values(), getBaseDao()
+//                .getDomainClass());
+//
+//        Specification<T> last = new Specification<T>() {
+//            @Override
+//            public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query,
+//                                         CriteriaBuilder cb) {
+//                if(diySpec == null)
+//                    return spec.toPredicate(root, query, cb);
+//                else
+//                    return cb.and(spec.toPredicate(root, query, cb),
+//                            diySpec.toPredicate(root, query, cb));
+//            }
+//        };
+//        return getBaseDao().findAll(last, page);
+//        // return getBaseDao().findAll( spec,page);
+//    }
 
-        final Specification<T> spec;
-        Map<String, SearchFilter> ss;
-        if (searchParams != null)
-            ss = SearchFilter.parse(searchParams);
-        else
-            ss = Maps.newHashMap();
+//    @Transactional(readOnly = true)
+//    public List<T> list(Map<String, Object> searchParams, String sort,
+//                        SearchFilter... searchFilters) {
+//        return this.list(searchParams, PageUtils.toSort(sort), searchFilters);
+//    }
 
-        spec = DynamicSpecifications.bySearchFilter(ss.values(), getBaseDao()
-                .getDomainClass());
-
-        Specification<T> last = new Specification<T>() {
-            @Override
-            public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query,
-                                         CriteriaBuilder cb) {
-                if(diySpec == null)
-                    return spec.toPredicate(root, query, cb);
-                else
-                    return cb.and(spec.toPredicate(root, query, cb),
-                            diySpec.toPredicate(root, query, cb));
-            }
-        };
-        return getBaseDao().findAll(last, page);
-        // return getBaseDao().findAll( spec,page);
-    }
-
-    @Transactional(readOnly = true)
-    public List<T> list(Map<String, Object> searchParams, String sort,
-                        SearchFilter... searchFilters) {
-        return this.list(searchParams, PageUtils.toSort(sort), searchFilters);
-    }
-
-    @Transactional(readOnly = true)
-    public List<T> list(Map<String, Object> searchParams, Sort sort,
-                        SearchFilter... searchFilters) {
-
-        Specification<T> spec;
-        Map<String, SearchFilter> ss;
-        if (searchParams != null)
-            ss = SearchFilter.parse(searchParams);
-        else
-            ss = Maps.newHashMap();
-
-        for (SearchFilter sf : searchFilters) {
-            if (sf.value == null)
-                continue;
-            ss.put(sf.fieldName, sf);
-        }
-        spec = DynamicSpecifications.bySearchFilter(ss.values(), getBaseDao()
-                .getDomainClass());
-
-        return getBaseDao().findAll(spec, sort);
-    }
+//    @Transactional(readOnly = true)
+//    public List<T> list(Map<String, Object> searchParams, Sort sort,
+//                        SearchFilter... searchFilters) {
+//
+//        Specification<T> spec;
+//        Map<String, SearchFilter> ss;
+//        if (searchParams != null)
+//            ss = SearchFilter.parse(searchParams);
+//        else
+//            ss = Maps.newHashMap();
+//
+//        for (SearchFilter sf : searchFilters) {
+//            if (sf.value == null)
+//                continue;
+//            ss.put(sf.fieldName, sf);
+//        }
+//        spec = DynamicSpecifications.bySearchFilter(ss.values(), getBaseDao()
+//                .getDomainClass());
+//
+//        return getBaseDao().findAll(spec, sort);
+//    }
 
     /**
      * 保存或修改单据编号 void
@@ -183,91 +183,91 @@ public abstract class BaseService<T> {
     /**
      * 根据id获取单据编号对象 Product
      */
-    @Transactional(readOnly = true)
-    public T findOne(String id) {
-        return getBaseDao().findOne(id);
-    }
+//    @Transactional(readOnly = true)
+//    public T findOne(String id) {
+//        return getBaseDao().findOne(id);
+//    }
+//
+//    @Transactional(readOnly = true)
+//    public List<T> findAll() {
+//        return getBaseDao().findAll();
+//    }
+//
+//    @Transactional(readOnly = true)
+//    public List<T> findAll(Map<String, Object> searchParams) {
+//        Specification<T> spec;
+//        if (searchParams != null) {
+//            Map<String, SearchFilter> ss = SearchFilter.parse(searchParams);
+//            spec = DynamicSpecifications.bySearchFilter(ss.values(),
+//                    getBaseDao().getDomainClass());
+//        } else
+//            spec = null;
+//        return getBaseDao().findAll(spec);
+//    }
+//
+//    @Transactional(readOnly = true)
+//    public List<T> findAll(Map<String, Object> searchParams, Sort sort) {
+//        Specification<T> spec;
+//        if (searchParams != null) {
+//            Map<String, SearchFilter> ss = SearchFilter.parse(searchParams);
+//            spec = DynamicSpecifications.bySearchFilter(ss.values(),
+//                    getBaseDao().getDomainClass());
+//        } else
+//            spec = null;
+//        return getBaseDao().findAll(spec, sort);
+//    }
 
-    @Transactional(readOnly = true)
-    public List<T> findAll() {
-        return getBaseDao().findAll();
-    }
-
-    @Transactional(readOnly = true)
-    public List<T> findAll(Map<String, Object> searchParams) {
-        Specification<T> spec;
-        if (searchParams != null) {
-            Map<String, SearchFilter> ss = SearchFilter.parse(searchParams);
-            spec = DynamicSpecifications.bySearchFilter(ss.values(),
-                    getBaseDao().getDomainClass());
-        } else
-            spec = null;
-        return getBaseDao().findAll(spec);
-    }
-
-    @Transactional(readOnly = true)
-    public List<T> findAll(Map<String, Object> searchParams, Sort sort) {
-        Specification<T> spec;
-        if (searchParams != null) {
-            Map<String, SearchFilter> ss = SearchFilter.parse(searchParams);
-            spec = DynamicSpecifications.bySearchFilter(ss.values(),
-                    getBaseDao().getDomainClass());
-        } else
-            spec = null;
-        return getBaseDao().findAll(spec, sort);
-    }
-
-    @Transactional(readOnly = true)
-    public List<T> findAllLimit(Sort sort, int limit, final String... fetch) {
-        Specification<T> spec = new Specification<T>() {
-            @Override
-            public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query,
-                                         CriteriaBuilder cb) {
-                for (int i = 0; i < fetch.length; i++) {
-
-                    root.fetch(fetch[i]);
-                }
-
-                return null;
-            }
-        };
-        return getBaseDao().findAllLimit(spec, sort, limit);
-    }
-
-    public List<T> findFiltersLimit(Sort sort, int limit,
-                                    SearchFilter... searchFilters) {
-        Specification<T> spec;
-        Map<String, SearchFilter> ss = Maps.newHashMap();
-        for (SearchFilter sf : searchFilters) {
-            ss.put(sf.fieldName, sf);
-        }
-        spec = DynamicSpecifications.bySearchFilter(ss.values(), getBaseDao()
-                .getDomainClass());
-        return getBaseDao().findAllLimit(spec, sort, limit);
-    }
-
-    @Transactional(readOnly = true)
-    public List<T> findSpecLimit(final Specification<T> spec, Sort sort,
-                                 int limit, final String... fetch) {
-        Specification<T> newspec = new Specification<T>() {
-            @Override
-            public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query,
-                                         CriteriaBuilder cb) {
-                for (int i = 0; i < fetch.length; i++) {
-
-                    root.fetch(fetch[i]);
-                }
-
-                return spec.toPredicate(root, query, cb);
-            }
-        };
-        return getBaseDao().findAllLimit(newspec, sort, limit);
-    }
-
-    @Transactional(readOnly = true)
-    public List<T> findByColumn(String colName, Object colValue) {
-        return getBaseDao().findByPropertyName(colName, colValue);
-    }
+//    @Transactional(readOnly = true)
+//    public List<T> findAllLimit(Sort sort, int limit, final String... fetch) {
+//        Specification<T> spec = new Specification<T>() {
+//            @Override
+//            public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query,
+//                                         CriteriaBuilder cb) {
+//                for (int i = 0; i < fetch.length; i++) {
+//
+//                    root.fetch(fetch[i]);
+//                }
+//
+//                return null;
+//            }
+//        };
+//        return getBaseDao().findAllLimit(spec, sort, limit);
+//    }
+//
+//    public List<T> findFiltersLimit(Sort sort, int limit,
+//                                    SearchFilter... searchFilters) {
+//        Specification<T> spec;
+//        Map<String, SearchFilter> ss = Maps.newHashMap();
+//        for (SearchFilter sf : searchFilters) {
+//            ss.put(sf.fieldName, sf);
+//        }
+//        spec = DynamicSpecifications.bySearchFilter(ss.values(), getBaseDao()
+//                .getDomainClass());
+//        return getBaseDao().findAllLimit(spec, sort, limit);
+//    }
+//
+//    @Transactional(readOnly = true)
+//    public List<T> findSpecLimit(final Specification<T> spec, Sort sort,
+//                                 int limit, final String... fetch) {
+//        Specification<T> newspec = new Specification<T>() {
+//            @Override
+//            public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query,
+//                                         CriteriaBuilder cb) {
+//                for (int i = 0; i < fetch.length; i++) {
+//
+//                    root.fetch(fetch[i]);
+//                }
+//
+//                return spec.toPredicate(root, query, cb);
+//            }
+//        };
+//        return getBaseDao().findAllLimit(newspec, sort, limit);
+//    }
+//
+//    @Transactional(readOnly = true)
+//    public List<T> findByColumn(String colName, Object colValue) {
+//        return getBaseDao().findByPropertyName(colName, colValue);
+//    }
 
     /**
      * 根据列查找唯一对象
@@ -296,23 +296,23 @@ public abstract class BaseService<T> {
      * @param searchFilters
      * @return
      */
-    @Transactional(readOnly = true)
-    public Page<T> listsPage(Pageable page, Map<String, Object> searchParams,
-                             SearchFilter... searchFilters) {
-
-        Specification<T> spec;
-        Map<String, SearchFilter> ss;
-        if (searchParams != null)
-            ss = SearchFilter.parse(searchParams);
-        else
-            ss = Maps.newHashMap();
-
-        for (SearchFilter sf : searchFilters) {
-            ss.put(sf.fieldName, sf);
-        }
-        spec = DynamicSpecifications.bySearchFilter(ss.values(), getBaseDao()
-                .getDomainClass());
-
-        return getBaseDao().findAll(spec, page);
-    }
+//    @Transactional(readOnly = true)
+//    public Page<T> listsPage(Pageable page, Map<String, Object> searchParams,
+//                             SearchFilter... searchFilters) {
+//
+//        Specification<T> spec;
+//        Map<String, SearchFilter> ss;
+//        if (searchParams != null)
+//            ss = SearchFilter.parse(searchParams);
+//        else
+//            ss = Maps.newHashMap();
+//
+//        for (SearchFilter sf : searchFilters) {
+//            ss.put(sf.fieldName, sf);
+//        }
+//        spec = DynamicSpecifications.bySearchFilter(ss.values(), getBaseDao()
+//                .getDomainClass());
+//
+//        return getBaseDao().findAll(spec, page);
+//    }
 }
