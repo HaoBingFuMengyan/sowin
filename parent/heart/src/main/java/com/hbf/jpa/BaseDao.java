@@ -17,7 +17,7 @@ import javax.persistence.LockModeType;
 @NoRepositoryBean
 public interface BaseDao<T,ID extends Serializable> extends JpaRepository<T, ID>,JpaSpecificationExecutor<T> {
 
-//    Class<T> getDomainClass();
+    Class<T> getDomainClass();
 //    String getSeqNo(String name);
 //    int executeNativeSql(String sql,Object...paras);
 //    String executeProcedure(String sql,Object[] paras);

@@ -56,7 +56,7 @@
 				{
 					"title": "账号管理",
 					"icon": "&#xe6af;",
-					"href": "",
+					"href": "operator/list.shtml",
 					"spread": false
 				},
 				{
