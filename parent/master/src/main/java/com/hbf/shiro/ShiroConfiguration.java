@@ -1,33 +1,31 @@
 package com.hbf.shiro;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
+import com.hbf.sys.UserRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
-import com.hbf.sys.UserRealm;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Configuration
 public class ShiroConfiguration {
 
-	private static final Logger logger = LoggerFactory.getLogger(ShiroConfiguration.class);
 
     /**
      * Shiro的Web过滤器Factory 命名:shiroFilter<br /> * * @param securityManager * @return
      */
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager  securityManager) {
-        logger.info("注入Shiro的Web过滤器-->shiroFilter", ShiroFilterFactoryBean.class);
+//        logger.info("注入Shiro的Web过滤器-->shiroFilter", ShiroFilterFactoryBean.class);
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 
         //Shiro的核心安全接口,这个属性是必须的
@@ -72,13 +70,21 @@ public class ShiroConfiguration {
      */
     @Bean
     public DefaultWebSecurityManager  securityManager(UserRealm userRealm) {
-        logger.info("注入Shiro的Web过滤器-->securityManager", ShiroFilterFactoryBean.class);
+//        Log.info("注入Shiro的Web过滤器-->securityManager", ShiroFilterFactoryBean.class);
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        userRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         securityManager.setRealm(userRealm);
         //注入缓存管理器;
         securityManager.setCacheManager(ehCacheManager());//这个如果执行多次，也是同样的一个对象;
         return securityManager;
     }
+
+//    @Bean
+//    public OperatorRealm operatorRealm(){
+//        OperatorRealm operatorRealm=new OperatorRealm();
+//        operatorRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+//    }
+
 
     /**
      * Shiro生命周期处理器 * @return
@@ -104,6 +110,21 @@ public class ShiroConfiguration {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
+    }
+
+
+    /**
+     * 告诉shiro密码验证方式
+     * @return
+     */
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher(){
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");//散列算法:这里使用MD5算法;
+        hashedCredentialsMatcher.setHashIterations(1);//散列的次数，比如散列两次，相当于 md5(md5(""));
+
+        return hashedCredentialsMatcher;
     }
 
 

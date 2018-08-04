@@ -43,7 +43,7 @@ public class AdminController {
 		}
 		String loginName = operator.getSusername();
 		logger.info("准备登陆用户 => {}", loginName);
-		UsernamePasswordToken token = new UsernamePasswordToken(loginName, MD5.encode(operator.getSpassword()));
+		UsernamePasswordToken token = new UsernamePasswordToken(loginName,operator.getSpassword());
 		//获取当前的Subject
 		Subject currentUser = SecurityUtils.getSubject();
 		try {
