@@ -65,10 +65,10 @@ public abstract class AbstractUserRealm extends AuthorizingRealm {
         //UsernamePasswordToken对象用来存放提交的登录信息
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         //查出是否有此用户
-//        Operator operator = operatorService.findBySusername(token.getUsername());
-        Operator operator = new Operator();
-        operator.setSusername("admin");
-        operator.setSpassword("e10adc3949ba59abbe56e057f20f883e");
+        Operator operator = operatorService.findBySusername(token.getUsername());
+//        Operator operator = new Operator();
+//        operator.setSusername("admin");
+//        operator.setSpassword("e10adc3949ba59abbe56e057f20f883e");
         if (operator != null) {
             // 若存在，将此用户存放到登录认证info中，无需自己做密码对比，Shiro会为我们进行密码对比校验
             return new SimpleAuthenticationInfo(operator.getSusername(), operator.getSpassword(), getName());

@@ -17,7 +17,11 @@ public class TomcatConfig {
     @Bean
     public EmbeddedServletContainerFactory embeddedServletContainerFactory() {
         ConfigurableEmbeddedServletContainer factory = new TomcatEmbeddedServletContainerFactory();
-        factory.setDocumentRoot(new File("/Users/haobingfu/eclipse-workspace/sowin/parent/master/src/main/webapp"));
+        factory.setDocumentRoot(new File(System.getProperty("user.dir")+"/parent/master/src/main/webapp"));
         return (EmbeddedServletContainerFactory) factory;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(System.getProperty("user.dir"));
     }
 }
