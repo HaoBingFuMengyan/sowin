@@ -94,6 +94,16 @@
 
                 </li>
                 <li>
+                    <a href="#">
+                        <i class="fa fa-home"></i> <span class="nav-label">系统管理</span> <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="${ctx}/sys/menu/list.shtml">菜单管理</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <a class="J_menuItem" href="layouts.html"><i class="fa fa-columns"></i>
                         <span class="nav-label">布局</span></a>
                 </li>
