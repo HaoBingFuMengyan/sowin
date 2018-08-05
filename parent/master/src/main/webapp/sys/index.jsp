@@ -27,7 +27,7 @@
     <script src="${ctxStatic}/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="${ctxStatic}/layer/layer.min.js"></script>
     <script src="${ctxStatic}/js/hplus.min.js"></script>
-    <script type="text/javascript" src="${ctxStatic}/js/contabs.min.js"></script>
+    <script type="text/javascript" src="${ctxStatic}/common/contabs.js"></script>
     <script src="${ctxStatic}/pace/pace.min.js"></script>
 </head>
 

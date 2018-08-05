@@ -1,16 +1,23 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: haobingfu
-  Date: 2018/8/5
-  Time: 14:56
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file="/include/taglib.jsp" %>
+
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <meta name="decorator" content="none">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>菜单管理</title>
+    <link rel="icon" href="${ctxStatic}/layui-admin/favicon.ico">
+
+    <%--引入jquery插件--%>
+    <script type="text/javascript" src="${ctxStatic}/jquery/jquery-2.1.1.min.js"></script>
+
 </head>
+
 <body>
-this is a menu
+${list.content}
 </body>
 </html>
