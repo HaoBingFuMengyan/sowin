@@ -1,0 +1,11 @@
+label{
+	font-size:13px!important;
+	font-weight:normal!important;
+	margin-bottom:0;
+}
+tbody tr td p.over-hidden{
+	width:50px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

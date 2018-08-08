@@ -1,0 +1,264 @@
+.tooltip {
+	display: inline;
+	position: relative;
+	z-index: 999;
+}
+.tooltip-item {
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 700;
+	padding: 0 10px;
+}
+.tooltip-item::after {
+	content: '';
+	position: absolute;
+	width: 360px;
+	height: 20px;
+	bottom: 100%;
+	left: 50%;
+	pointer-events: none;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.tooltip:hover .tooltip-item::after {
+	pointer-events: auto;
+}
+.tooltip-content {
+	position: absolute;
+	z-index: 9999;
+	width: 150px;
+	height:100px;
+	left: 132%;
+	margin: 0 0 20px -180px;
+	bottom: 100%;
+	text-align: left;
+	font-size: 0.765em;
+	line-height: 1.4;
+	box-shadow: -5px -5px 15px rgba(48,54,61,0.2);
+	background: #2a3035;
+	opacity: 0;
+	cursor: default;
+	pointer-events: none;
+}
+
+.tooltip-effect-1 .tooltip-content {
+	-webkit-transform: translate3d(0,-10px,0);
+	transform: translate3d(0,-10px,0);
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+}
+
+
+.tooltip:hover .tooltip-content {
+	pointer-events: auto;
+	opacity: 1;
+	-webkit-transform: translate3d(0,0,0) rotate3d(0,0,0,0);
+	transform: translate3d(0,0,0) rotate3d(0,0,0,0);
+}
+
+.tooltip-content::after {
+	content: '';
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: transparent;
+	border-top-color: #2a3035;
+	border-width: 10px;
+	margin-left: -10px;
+}
+
+/* Tooltip content*/
+
+.tooltip-content img {
+	position: relative;
+	height: 170px;
+	display: block;
+	float: left;
+	margin-right: 1em;
+}
+
+.tooltip-text {
+	font-size: 0.68em;
+	line-height: 1.35;
+	display: block;
+	padding: 1.31em 1.21em 1.21em 0;
+	color: #fff;
+}
+.shiyi{
+	width:100%;
+	height:350px;
+	position:relative;
+	overflow:hidden;
+	background:#d9d6df;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height:100%;
+	}
+.shiyi .mood-six{
+	position:absolute;
+	width:100px;
+	height:100px;
+	/* background:url(../img/sixx.png); */
+	top:33%;
+	left:30%;
+	}
+.shiyi .mood-six .text6{
+	position:absolute;
+	width:200px;
+	height:160px;
+	background:#000;
+	top:55px;
+	left:-90px;
+	color:#fff;
+	display:none;
+	text-align:center;
+	opacity:0.8;
+	z-index:10000;
+	}
+.shiyi .mood-six:hover{
+	cursor:pointer;
+	/* background:url(../img/six1.png); */
+	}
+.shiyi .mood-six:hover .text6{
+	display:block;
+	}
+.shiyi .building{
+	position:absolute;
+	width:80px;
+	height:80px;
+	/* background:url(../img/shangwu.png); */
+	top:28%;
+	left:58%;
+	}
+.shiyi .building .shangwu{
+	position:absolute;
+	width:200px;
+	height:160px;
+	background:#000;
+	top:55px;
+	left:-90px;
+	color:#fff;
+	display:none;
+	text-align:center;
+	opacity:0.8;
+	z-index:10000;
+	}
+.shiyi .building:hover{
+	cursor:pointer;
+	/* background:url(../img/shangwu1.png); */
+	}
+.shiyi .building:hover .shangwu{
+	display:block;
+	}
+.shiyi .mood-five{
+	position:absolute;
+	width:80px;
+	height:80px;
+	/* background:url(../img/five.png); */
+	top:38%;
+	left:75%;
+	}
+.shiyi .mood-five .text5{
+	position:absolute;
+	width:200px;
+	height:160px;
+	background:#000;
+	top:55px;
+	left:-90px;
+	color:#fff;
+	display:none;
+	text-align:center;
+	opacity:0.8;
+	z-index:10000;
+	}
+.shiyi .mood-five:hover{
+	cursor:pointer;
+	/* background:url(../img/five5.png); */
+	}
+.shiyi .mood-five:hover .text5{
+	display:block;
+}
+.shiyi .mood-four{
+	position:absolute;
+	width:80px;
+	height:80px;
+	/* background:url(../img/four.png); */
+	top:36%;
+	left:86%;
+	}
+.shiyi .mood-four .text4{
+	position:absolute;
+	width:200px;
+	height:160px;
+	background:#000;
+	top:-135px;
+	left:-110px;
+	color:#fff;
+	display:none;
+	text-align:center;
+	opacity:0.8;
+	z-index:10000;
+	}
+.shiyi .mood-four:hover{
+	cursor:pointer;
+	/* background:url(../img/four4.png); */
+	}
+.shiyi .mood-four:hover .text4{
+	display:block;
+}
+.shiyi .mood-seven{
+	position:absolute;
+	width:80px;
+	height:80px;
+	/* background:url(../img/seven.png); */
+	top:57%;
+	left:69%;
+	}
+.shiyi .mood-seven .text7{
+	position:absolute;
+	width:200px;
+	height:160px;
+	background:#000;
+	top:-135px;
+	left:-200px;
+	color:#fff;
+	display:none;
+	text-align:center;
+	opacity:0.8;
+	z-index:10000;
+	}
+.shiyi .mood-seven:hover{
+	cursor:pointer;
+	/* background:url(../img/seven7.png); */
+	}
+.shiyi .mood-seven:hover .text7{
+	display:block;
+}
+.shiyi strong{
+	font-size:14px;
+}
+.shiyi span{
+	font-size:14px;
+	font-size:normal;
+}
+.shiyi .fourth{
+	position:absolute;
+	right:81px;
+	top:366px;
+	}
+.shiyi .fifth{
+	position:absolute;
+	right:181px;
+	top:366px;
+}
+.shiyi .fourth .tooltip-item,.shiyi .fifth .tooltip-item{
+	width:110px;
+	height:81px;
+	}
+

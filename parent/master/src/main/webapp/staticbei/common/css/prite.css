@@ -1,0 +1,64 @@
+body,div {
+  margin: 0;
+  padding: 0;
+  font-family: Microsoft YaHei;
+  font-size:14px;
+  color:#333;
+}
+div{
+	padding:3px 0 3px 0;
+}
+div .heng{
+	border-bottom:1px solid #333;
+}
+.prite{
+	
+	width:595px;
+	margin:0  auto;
+}
+.biaoti{
+	width:100%;
+	text-align:center;
+	color:#000;
+	font-size:20px;
+	margin-bottom:25px;
+}
+.number{
+	float:right;
+	margin-right:50px;
+	
+}
+.qing{
+	
+	clear:both;
+}
+.first{
+	
+	text-indent:28px;
+}
+.zhuti h3{
+	
+	font-size:16px;
+	padding:3px 0 3px 0;
+}
+.zhuti p{
+	
+	font-size:14px;
+	padding:1px 0 1px 0;
+	text-indent:28px;
+}
+.daibiao p{
+	display:inline-block;
+	color:#000;
+	font-size:16px;
+}
+.date{
+	float:right;
+	margin-right:50px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+.queding{
+	clear:both;
+	
+}
