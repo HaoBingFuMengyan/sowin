@@ -94,7 +94,8 @@
 		</dependency>
   
   </dependencies>
-  
+
+	<!--将应用打包成一个可运行的 jar包-->
   <build>
 		<plugins>
 			<plugin>
