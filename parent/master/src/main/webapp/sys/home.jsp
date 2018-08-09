@@ -62,7 +62,7 @@
                     <div class="dropdown profile-element" style="text-align: center;">
 
                         <div style="font-size: 30px;font-weight: bold;color:white;">
-                            众钢联
+                            点餐系统
                         </div>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
@@ -71,11 +71,11 @@
                         </a>
                         <a class="changepw" href="javascript:openlog('修改密码','/sys/operator/operatorSpassword.shtml','550px','330px')">[修改密码]</a>
                     </div>
-                    <div class="logo-element">众钢联
+                    <div class="logo-element">点餐系统
                     </div>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="${ctx}/index.shtml">
                         <i class="fa fa-home"></i> <span class="nav-label">主页</span> <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
@@ -83,7 +83,7 @@
                             <a class="J_menuItem" href="${ctx}/sys/menu/list.shtml">主页示例一</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="#">主页示例二</a>
+                            <a class="J_menuItem" href="${ctx}/operator/list.shtml">主页示例二</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="#">主页示例三</a>
@@ -161,7 +161,7 @@
             <a href="/logout.shtml" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
-            <%--<iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="/home.shtml" frameborder="0" data-id="/home.shtml" seamless></iframe>--%>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="/main.shtml" frameborder="0" data-id="/main.shtml" seamless></iframe>
         </div>
     </div>
     <!--右侧部分结束-->

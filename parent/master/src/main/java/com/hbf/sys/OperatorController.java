@@ -23,11 +23,11 @@ public class OperatorController extends BaseController<Operator,String>{
 
     @Override
     protected String getPackName() {
-        return "";
+        return "sys";
     }
 
     @Override
     protected String getObjectName() {
-        return "";
+        return "operator_list";
     }
 }

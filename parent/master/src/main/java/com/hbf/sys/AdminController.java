@@ -100,7 +100,7 @@ public class AdminController {
 	}
 	@GetMapping(value = "main.shtml")
 	public String main(Model model,HttpServletRequest request){
-		return "sys/main";
+		return "sys/shouye";
 	}
 
 	@RequestMapping(value = "news/newsList.shtml")
