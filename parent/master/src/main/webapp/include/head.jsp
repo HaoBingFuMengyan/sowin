@@ -53,6 +53,10 @@
 <link href="${ctxStatic}/common/css/login.css" type="text/css" rel="stylesheet" />
 <link href="${ctxStatic}/common/css/style.css" type="text/css"rel="stylesheet" />
 
+<%--引入jeeplus插件--%>
+<script src="${ctxStatic}/common/jeeplus.js" type="text/javascript"></script>
+<link href="${ctxStatic}/common/jeeplus.css" type="text/css" rel="stylesheet" />
+
 <script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}';</script>
 
 <!-- 弹窗字体设置 -->

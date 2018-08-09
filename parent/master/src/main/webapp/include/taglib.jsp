@@ -6,3 +6,4 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <c:set var="ctxStatic" value="${pageContext.request.contextPath}/static"/>
 <c:set var="limit" value="20" />
+<%@ taglib prefix="sys" uri="http://www.hbf.com/tags/sys" %>

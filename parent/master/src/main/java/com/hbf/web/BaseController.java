@@ -3,6 +3,7 @@ package com.hbf.web;
 import com.hbf.jpa.BaseService;
 import com.hbf.persistence.PageUtils;
 import com.hbf.utils.B;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -44,6 +46,25 @@ public abstract class BaseController<T,V> {
 
     public String getDefaultSort(){
         return "";
+    }
+
+    @ModelAttribute
+    public void prepareSave(
+            @RequestParam(value = "id", defaultValue = "") String id,
+            Model model) {
+
+        if (StringUtils.isNotBlank(id)) {
+            T product = getBaseService().findOne(id);
+            if (product != null) {
+                try {
+                    model.addAttribute("oriObj", BeanUtils.cloneBean(product));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                model.addAttribute("model", poToVo(product));
+            }
+
+        }
     }
 
     /**
@@ -87,6 +108,40 @@ public abstract class BaseController<T,V> {
 
         return getBaseService().listPage(page, searchParams);
 
+    }
+
+    /**
+     *用于增，改，查的详情
+     * @param model
+     * @param id
+     * @return
+     */
+    @RequestMapping(value ="detail.shtml")
+    public String detail(String id,Model model,ServletRequest request) {
+        try{
+            Map<String, Object> params = Servlets.getParametersStartingWith(
+                    request, "param_");
+            if(B.N(id)){  //修改或查询
+                model.addAttribute("data",getBaseService().findOne(id));
+            }else{//新增
+                model.addAttribute("data",this.getBaseService().getDomainClass().newInstance());
+            }
+            model.addAllAttributes(params);
+        }catch(Exception e){
+            e.printStackTrace();
+//            Msg.error(model, "操作失败");
+        }
+        return getPackName()+"/"+getObjectName()+"-detail";
+    }
+
+    @SuppressWarnings("unchecked")
+    private V poToVo(T obj) {
+        return (V) obj;
+    }
+
+    @SuppressWarnings("unchecked")
+    protected T voToPo(V obj) {
+        return (T) obj;
     }
 
 }

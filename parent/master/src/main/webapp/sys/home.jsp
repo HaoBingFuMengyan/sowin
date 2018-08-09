@@ -80,52 +80,32 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="${ctx}/sys/menu/list.shtml">主页示例一</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="${ctx}/operator/list.shtml">主页示例二</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="#">主页示例三</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="#">主页示例四</a>
-                        </li>
-                        <li>
-                            <a href="#">主页示例五</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="#" data-index="0">主页示例一</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="#">主页示例二</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="#">主页示例三</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="#">主页示例四</a>
-                        </li>
-                        <li>
-                            <a href="#" >主页示例五</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="#" data-index="0">主页示例一</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="#">主页示例二</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="#">主页示例三</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="#">主页示例四</a>
-                        </li>
-                        <li>
-                            <a href="#">主页示例五</a>
+                            <a class="J_menuItem" href="#">主页示例一</a>
                         </li>
                     </ul>
 
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-table"></i>
+                        <span class="nav-label">系统管理</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="${ctx}/sys/menu/list.shtml">菜单管理</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="table_data_tables.html">DataTables</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="table_jqgrid.html">jqGrid</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="table_foo_table.html">Foo Tables</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="table_bootstrap.html">Bootstrap Table
+                                <span class="label label-danger pull-right">推荐</span></a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -160,7 +140,7 @@
             </div>
             <a href="/logout.shtml" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
-        <div class="row J_mainContent" id="content-main">
+        <div class="row J_mainContent" id="content-main" style="background-color: lightgrey;">
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="/main.shtml" frameborder="0" data-id="/main.shtml" seamless></iframe>
         </div>
     </div>

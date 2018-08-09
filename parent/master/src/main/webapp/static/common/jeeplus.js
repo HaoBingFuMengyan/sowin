@@ -458,13 +458,7 @@ function reset(){//重置，页码清零
 		return false;
 	 }
 function sortOrRefresh(){//刷新或者排序，页码不清零
-	setTimeout(() => {
-		var _pageno=$("#page_current").text();
-		
-		$("#pageNo").val(_pageno-1);
-		$("#searchForm").submit();
-	}, 10);
-	
+	$("#searchForm").submit();
 	return false;
 }
 function page(n,s){//翻页
