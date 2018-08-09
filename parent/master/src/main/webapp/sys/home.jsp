@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="${ctxStatic}/bootstrap-table-master/docs/favicon.ico">
 
     <%@ include file="/include/head.jsp"%>
-    <script src="${ctxStatic}/common/inspinia.js?v=3.2.0"></script>
+    <script src="${ctxStatic}/common/inspinia.js"></script>
     <script src="${ctxStatic}/common/contabs.js"></script>
     <script src="${ctxStatic}/jquery/jquery.cookie.js"></script>
 
@@ -80,7 +80,7 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="http://www.baidu.com" data-index="0">主页示例一</a>
+                            <a class="J_menuItem" href="${ctx}/sys/menu/list.shtml">主页示例一</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="#">主页示例二</a>

@@ -96,7 +96,7 @@ public class AdminController {
 	 */
 	@GetMapping(value="index.shtml")
 	public String index(Model model,HttpServletRequest request){
-		return "sys/index";
+		return "sys/home";
 	}
 	@GetMapping(value = "main.shtml")
 	public String main(Model model,HttpServletRequest request){
