@@ -21,7 +21,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/sys/menu")
-public class MenuController extends BaseController<Menu,String>{
+public class MenuController extends BaseController<Menu,Menu>{
 
     @Autowired
     private MenuService menuService;

@@ -1,11 +1,13 @@
 package com.hbf.web;
 
+import com.hbf.exception.ServiceException;
 import com.hbf.jpa.BaseService;
 import com.hbf.persistence.PageUtils;
 import com.hbf.utils.B;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletRequest;
+import javax.validation.Valid;
 import javax.validation.Validator;
 import java.util.Map;
 
@@ -129,11 +133,45 @@ public abstract class BaseController<T,V> {
             model.addAllAttributes(params);
         }catch(Exception e){
             e.printStackTrace();
-//            Msg.error(model, "操作失败");
+            Msg.error(model, "操作失败");
         }
         return getPackName()+"/"+getObjectName()+"-detail";
     }
 
+    /**
+     * 保存
+     */
+    @RequestMapping(value = "save.shtml")
+    protected String dosave(
+            @RequestParam(value = "id", defaultValue = "") String id, Model model, RedirectAttributes rmodel,
+            @Valid @ModelAttribute("model") V obj, ServletRequest reqeust) {
+
+        return save(id, model, rmodel,obj, reqeust);
+    }
+
+    public String save(String id, Model model, RedirectAttributes rmodel,V obj, ServletRequest request) {
+        String r="";
+        try {
+
+            if (B.Y(id))
+                r=this.getObjectName() + ":" + "add";
+            if (B.N(id))
+                r=this.getObjectName() + ":" + "edit";
+//            SecurityUtils.getSubject().checkPermission(r);
+            getBaseService().BaseSave(voToPo(obj), id);
+            Msg.success(model,"保存成功",1);
+            return Layer.close();
+        } catch (ServiceException ex) {
+            Msg.error(model,ex.getMessage());
+        }catch (AuthorizationException ex) {
+            Msg.error(model,"您没有权限:"+r);
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            Msg.error(model,"操作出错，请重试或联系管理员");
+        }
+        model.addAttribute("data",obj);
+        return getPackName()+"/"+getObjectName()+"-detail";
+    }
     @SuppressWarnings("unchecked")
     private V poToVo(T obj) {
         return (V) obj;

@@ -2,6 +2,7 @@ package com.hbf.exception;
 
 import com.hbf.webUtils.MsgUtils;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Map;
  *
  * @frogsing van
  */
-public class ServiceException extends RuntimeException {
+public class ServiceException extends RuntimeException implements Serializable {
 
     private static final long serialVersionUID = 3583566093089790852L;
 

@@ -17,22 +17,21 @@
 		  <artifactId>javax.servlet-api</artifactId>
 		  <scope>provided</scope>
 	  </dependency>
-	  	<!--tomcat支持-->
+	  	<!-- springboot 内置tomcat容器不支持jsp 引入外部tomact支持jsp-->
 	    <dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-tomcat</artifactId>
 	    </dependency>
-  		<!-- 支持web -->
   		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-  		<!-- 支持jsp -->
  		<dependency>
 		   <groupId>org.apache.tomcat.embed</groupId>
 		    <artifactId>tomcat-embed-jasper</artifactId>
 		    <!--<scope>provided</scope>-->
 		</dependency>
+
 	  	<!--jsp标签库-->
 		<dependency>
 		    <groupId>javax.servlet</groupId>
@@ -50,6 +49,7 @@
 		  <version>1.0.27</version>
 	  </dependency>
 
+	  <!-- 引入aop实现WEB请求日志统一处理 -->
 	  <dependency>
 		  <groupId>org.springframework.boot</groupId>
 		  <artifactId>spring-boot-starter-aop</artifactId>
@@ -62,7 +62,12 @@
 		  <version>${kaptcha.version}</version>
 	  </dependency>
 
-	  <!-- sitemesh -->
+	  <!-- spring boot继承sitemesh装饰器 -->
+	  <!--<dependency>-->
+		  <!--<groupId>org.sitemesh</groupId>-->
+		  <!--<artifactId>sitemesh</artifactId>-->
+		  <!--<version>3.0.1</version>-->
+	  <!--</dependency>-->
 	  <dependency>
 		  <groupId>pinyin4j</groupId>
 		  <artifactId>pinyin4j</artifactId>
