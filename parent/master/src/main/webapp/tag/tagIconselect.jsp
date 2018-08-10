@@ -4,6 +4,7 @@
 <head>
     <title>图标选择</title>
 	<meta name="decorator" content="blank"/>
+	<%@include file="/include/head.jsp"%>
     <style type="text/css">
     	.page-header {clear:both;margin:0 20px;padding-top:20px;}
 		.the-icons {padding:25px 10px 15px;list-style:none;}

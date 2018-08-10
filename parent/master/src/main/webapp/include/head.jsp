@@ -21,8 +21,8 @@
 <!-- 引入依赖的第三方插件 -->
 <script src="${ctxStatic}/slimscroll/jquery.slimscroll.min.js"></script>
 
-<%--<script src="${ctxStatic}/jquery-validation/1.14.0/jquery.validate.min.js?v=6" type="text/javascript"></script>--%>
-<%--<script src="${ctxStatic}/jquery-validation/1.14.0/localization/messages_zh.min.js?v=1" type="text/javascript"></script>--%>
+<script src="${ctxStatic}/jquery-validation/1.14.0/jquery.validate.min.js?v=6" type="text/javascript"></script>
+<script src="${ctxStatic}/jquery-validation/1.14.0/localization/messages_zh.min.js?v=1" type="text/javascript"></script>
 <link href="${ctxStatic}/jquery-jbox/2.3/Skins/Bootstrap/jbox.min.css" rel="stylesheet" />
 <script src="${ctxStatic}/jquery-jbox/2.3/jquery.jBox-2.3.min.js" type="text/javascript"></script>
 <script src="${ctxStatic}/My97DatePicker/WdatePicker.js" type="text/javascript"></script>

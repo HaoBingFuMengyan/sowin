@@ -55,11 +55,11 @@
                         </td>
                         <td nowrap>
 
-                            <a onclick="openlogView('查看菜单','${ctx}/dt/menu/detail.shtml?id=${menu.id}','1000px','500px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"></i> 查看</a>
+                            <a onclick="openlogView('查看菜单','${ctx}/sys/menu/detail.shtml?id=${menu.id}','1000px','500px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"></i> 查看</a>
                             <shiro:hasPermission name="menu:edit">
-                                <a onclick="openlog('菜单管理','${ctx}/dt/menu/detail.shtml?id=${menu.id}','1000px','500px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> 修改</a>
-                                <a href="${ctx}/dt/menu/delete.shtml?id=${menu.id}" onclick="return confirmx('要删除该菜单及所有子菜单项吗？', this.href)" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> 删除</a>
-                                <a onclick="openlog('菜单管理','${ctx}/dt/menu/detail.shtml?sparentid=${menu.id}','1000px','500px')" class="btn btn-primary btn-xs" ><i class="fa fa-plus"></i> 添加下级菜单</a>
+                                <a onclick="openlog('菜单管理','${ctx}/sys/menu/detail.shtml?id=${menu.id}','1000px','500px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> 修改</a>
+                                <a href="${ctx}/sys/menu/delete.shtml?id=${menu.id}" onclick="return confirmx('要删除该菜单及所有子菜单项吗？', this.href)" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> 删除</a>
+                                <a onclick="openlog('菜单管理','${ctx}/sys/menu/detail.shtml?sparentid=${menu.id}','1000px','500px')" class="btn btn-primary btn-xs" ><i class="fa fa-plus"></i> 添加下级菜单</a>
                             </shiro:hasPermission>
                         </td>
                     </tr>

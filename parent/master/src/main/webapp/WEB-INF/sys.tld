@@ -13,4 +13,9 @@
         <name>iconselect</name>
         <path>/WEB-INF/tags/sys/iconselect.tag</path>
     </tag-file>
+
+    <tag-file>
+        <name>treeselect</name>
+        <path>/WEB-INF/tags/sys/treeselect.tag</path>
+    </tag-file>
 </taglib>

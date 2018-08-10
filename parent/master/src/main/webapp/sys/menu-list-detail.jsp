@@ -15,7 +15,7 @@
             return false;
         }
         $(document).ready(function () {
-            focusmenu('菜单管理');
+//            focusmenu('菜单管理');
             validateForm = $("#inputForm").validate({
                 submitHandler: function (form) {
                     loading('正在提交，请稍等...');
@@ -68,12 +68,12 @@
                         <tbody>
                         <tr>
                             <td class="width-15 active"><label class="pull-right">上级菜单:</label></td>
-                            <td class="width-35"><%--<sys:treeselect id="menu" name="sparentid" value="${data.sparentid}"
+                            <td class="width-35"><sys:treeselect id="menu" name="sparentid" value="${data.sparentid}"
                                                                  labelName="parent.sname"
                                                                  labelValue="${data.parent.sname}"
-                                                                 title="菜单" url="/dt/menu/treeData.shtml"
+                                                                 title="菜单" url="/sys/menu/treeData.shtml"
                                                                  extId="${data.id}"
-                                                                 cssClass="form-control required"/>--%></td>
+                                                                 cssClass="form-control required"/></td>
                             <td class="width-15 active"><label class="pull-right"><font color="red">*</font> 名称:</label>
                             </td>
                             <td class="width-35"><form:input path="sname" htmlEscape="false" maxlength="50"
