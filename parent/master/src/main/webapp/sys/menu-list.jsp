@@ -36,7 +36,8 @@
                 <div class="col-sm-12">
                     <div class="pull-left">
                         <a onclick="openlog('新增菜单','${ctx}/sys/menu/form.shtml','1000px','500px');" class="btn btn-white btn-sm"><i class="fa fa-plus"></i>添加</a>
-                        <button class="btn btn-white btn-sm " data-toggle="tooltip" data-placement="left"
+                        <sys:delete message="确定删除当前菜单以及子菜单吗?" url="${ctx}/sys/menu/delete.json"></sys:delete>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left"
                                 onclick="sortOrRefresh()" title="刷新"><i class="glyphicon glyphicon-repeat"></i> 刷新
                         </button>
                     </div>
@@ -57,7 +58,7 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${list}" var="menu">
-                    <tr id="${menu.id}" pId="${menu.sparentid ne '0'?menu.sparentid:'0'}">
+                    <tr pId="${menu.sparentid ne '0'?menu.sparentid:'0'}">
                         <td> <input type="checkbox" id="${menu.id}" value="${menu.id}" class="i-checks"></td>
                         <td nowrap><i class="icon-menu.icon"></i><a onclick="openlogView('查看菜单', '${ctx}/sys/menu/form.shtml?id=${menu.id}','1000px', '500px')">${menu.sname}</a></td>
                         <td >${menu.smenupath}</td>
@@ -68,7 +69,7 @@
 
                             <a onclick="openlogView('查看菜单','${ctx}/sys/menu/form.shtml?id=${menu.id}','1000px','500px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"></i> 查看</a>
                             <a onclick="openlog('菜单管理','${ctx}/sys/menu/form.shtml?id=${menu.id}','1000px','500px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> 修改</a>
-                            <a href="${ctx}/sys/menu/delete.shtml?id=${menu.id}" onclick="return confirmx('要删除该菜单及所有子菜单项吗？', this.href)" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> 删除</a>
+                            <a onclick="deleteSome('要删除该菜单及所有子菜单项吗?','${ctx}/sys/menu/delete.json','${menu.id}')" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> 删除</a>
                             <a onclick="openlog('菜单管理','${ctx}/sys/menu/form.shtml?sparentid=${menu.id}','1000px','500px')" class="btn btn-primary btn-xs" ><i class="fa fa-plus"></i> 添加下级菜单</a>
                         </td>
                     </tr>

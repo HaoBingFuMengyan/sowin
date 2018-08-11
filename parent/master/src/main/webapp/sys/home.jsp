@@ -75,7 +75,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="${ctx}/index.shtml">
+                    <a href="#">
                         <i class="fa fa-home"></i> <span class="nav-label">主页</span> <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
@@ -138,10 +138,10 @@
                     </li>
                 </ul>
             </div>
-            <a href="/logout.shtml" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+            <a href="${ctx}/logout.shtml" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main" style="background-color: lightgrey;">
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="/main.shtml" frameborder="0" data-id="/main.shtml" seamless></iframe>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="${ctx}/main.shtml" frameborder="0" data-id="${ctx}/main.shtml" seamless></iframe>
         </div>
     </div>
     <!--右侧部分结束-->

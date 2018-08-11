@@ -9,13 +9,21 @@
     <short-name>sys</short-name>
     <uri>http://www.hbf.com/tags/sys</uri>
 
+    <!--图标选择标签-->
     <tag-file>
         <name>iconselect</name>
         <path>/WEB-INF/tags/sys/iconselect.tag</path>
     </tag-file>
 
+    <!--菜单选择标签-->
     <tag-file>
         <name>treeselect</name>
         <path>/WEB-INF/tags/sys/treeselect.tag</path>
+    </tag-file>
+
+    <!--删除标签-->
+    <tag-file>
+        <name>delete</name>
+        <path>/WEB-INF/tags/sys/delete.tag</path>
     </tag-file>
 </taglib>

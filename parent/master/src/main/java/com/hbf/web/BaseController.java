@@ -1,6 +1,7 @@
 package com.hbf.web;
 
 import com.hbf.exception.ServiceException;
+import com.hbf.ext.ExtResult;
 import com.hbf.jpa.BaseService;
 import com.hbf.persistence.PageUtils;
 import com.hbf.utils.B;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletRequest;
@@ -27,10 +29,10 @@ import java.util.Map;
 
 /**
  * 控制器支持类
+ *
  * @author haobingfu
- * @version
  */
-public abstract class BaseController<T,V> {
+public abstract class BaseController<T, V> {
     /**
      * 日志对象
      */
@@ -48,7 +50,7 @@ public abstract class BaseController<T,V> {
 
     protected abstract String getObjectName();
 
-    public String getDefaultSort(){
+    public String getDefaultSort() {
         return "";
     }
 
@@ -73,6 +75,7 @@ public abstract class BaseController<T,V> {
 
     /**
      * list集合
+     *
      * @param start
      * @param limit
      * @param sort
@@ -84,18 +87,19 @@ public abstract class BaseController<T,V> {
     protected String dolist(
             @RequestParam(value = "start", defaultValue = "0") int start,
             @RequestParam(value = "limit", defaultValue = PageUtils.Limit) int limit,
-            @RequestParam(value = "sort", defaultValue = "") String sort,Model model,
+            @RequestParam(value = "sort", defaultValue = "") String sort, Model model,
             ServletRequest request) {
-        if(B.Y(sort))
+        if (B.Y(sort))
             sort = getDefaultSort();
 //        checkPermissionQuery(request);
         Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, model);
         model.addAttribute("list", list(start, limit, sort, searchParams));
-        return getPackName()+"/"+getObjectName();
+        return getPackName() + "/" + getObjectName();
     }
 
     /**
      * 默认查询权限
+     *
      * @param request
      */
     protected void checkPermissionQuery(ServletRequest request) {
@@ -103,39 +107,40 @@ public abstract class BaseController<T,V> {
                 this.getObjectName() + ":" + "query");
     }
 
-    public Page<T> list(int start, int limit, String sort, Map<String,Object> searchParams) {
-        String[] s=new String[]{""};
-        if(StringUtils.isNotEmpty(sort)){
-            s=sort.split("\\,");
+    public Page<T> list(int start, int limit, String sort, Map<String, Object> searchParams) {
+        String[] s = new String[]{""};
+        if (StringUtils.isNotEmpty(sort)) {
+            s = sort.split("\\,");
         }
-        PageRequest page = PageUtils.page(start, limit,s);
+        PageRequest page = PageUtils.page(start, limit, s);
 
         return getBaseService().listPage(page, searchParams);
 
     }
 
     /**
-     *用于增，改，查的详情
+     * 用于增，改，查的详情
+     *
      * @param model
      * @param id
      * @return
      */
-    @RequestMapping(value ="detail.shtml")
-    public String detail(String id,Model model,ServletRequest request) {
-        try{
+    @RequestMapping(value = "detail.shtml")
+    public String detail(String id, Model model, ServletRequest request) {
+        try {
             Map<String, Object> params = Servlets.getParametersStartingWith(
                     request, "param_");
-            if(B.N(id)){  //修改或查询
-                model.addAttribute("data",getBaseService().findOne(id));
-            }else{//新增
-                model.addAttribute("data",this.getBaseService().getDomainClass().newInstance());
+            if (B.N(id)) {  //修改或查询
+                model.addAttribute("data", getBaseService().findOne(id));
+            } else {//新增
+                model.addAttribute("data", this.getBaseService().getDomainClass().newInstance());
             }
             model.addAllAttributes(params);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Msg.error(model, "操作失败");
         }
-        return getPackName()+"/"+getObjectName()+"-detail";
+        return getPackName() + "/" + getObjectName() + "-detail";
     }
 
     /**
@@ -146,32 +151,62 @@ public abstract class BaseController<T,V> {
             @RequestParam(value = "id", defaultValue = "") String id, Model model, RedirectAttributes rmodel,
             @Valid @ModelAttribute("model") V obj, ServletRequest reqeust) {
 
-        return save(id, model, rmodel,obj, reqeust);
+        return save(id, model, rmodel, obj, reqeust);
     }
 
-    public String save(String id, Model model, RedirectAttributes rmodel,V obj, ServletRequest request) {
-        String r="";
+    public String save(String id, Model model, RedirectAttributes rmodel, V obj, ServletRequest request) {
+        String r = "";
         try {
 
             if (B.Y(id))
-                r=this.getObjectName() + ":" + "add";
+                r = this.getObjectName() + ":" + "add";
             if (B.N(id))
-                r=this.getObjectName() + ":" + "edit";
+                r = this.getObjectName() + ":" + "edit";
 //            SecurityUtils.getSubject().checkPermission(r);
             getBaseService().BaseSave(voToPo(obj), id);
-            Msg.success(model,"保存成功",1);
+            Msg.success(model, "保存成功", 1);
             return Layer.close();
         } catch (ServiceException ex) {
-            Msg.error(model,ex.getMessage());
-        }catch (AuthorizationException ex) {
-            Msg.error(model,"您没有权限:"+r);
-        }catch (Exception ex) {
+            Msg.error(model, ex.getMessage());
+        } catch (AuthorizationException ex) {
+            Msg.error(model, "您没有权限:" + r);
+        } catch (Exception ex) {
             ex.printStackTrace();
-            Msg.error(model,"操作出错，请重试或联系管理员");
+            Msg.error(model, "操作出错，请重试或联系管理员");
         }
-        model.addAttribute("data",obj);
-        return getPackName()+"/"+getObjectName()+"-detail";
+        model.addAttribute("data", obj);
+        return getPackName() + "/" + getObjectName() + "-detail";
     }
+
+    /**
+     * Async删除
+     */
+    @RequestMapping(value = "delete.json")
+    @ResponseBody
+    protected ExtResult dodelete(
+            @RequestParam(value = "ids") String[] ids)
+            throws Exception {
+
+        return delete(ids);
+    }
+
+    public ExtResult delete(String[] ids) {
+        try {
+            //检查是否有删除权限
+//            SecurityUtils.getSubject().checkPermission(
+//                    this.getObjectName() + ":" + "delete");
+            getBaseService().BaseDelete(ids);
+            return ExtResult.success("删除成功！");
+        } catch (ServiceException ex) {
+            ex.printStackTrace();
+            return ExtResult.failure(ex.getMessage());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ExtResult.failure("操作出错，请重试或联系管理员");
+        }
+    }
+
+
     @SuppressWarnings("unchecked")
     private V poToVo(T obj) {
         return (V) obj;

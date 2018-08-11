@@ -506,7 +506,7 @@ function deleteSome(){
 		top.layer.confirm(message, {icon: 3, title:'系统提示'},function(index){
 			$.ajax({
 			    url:url,
-			    data:{checkboxId:checkid},
+			    data:{ids:checkid},
 			    traditional:true,
 			    success:function(data,textStatus,jqXHR){
 			    	if(data.success){
