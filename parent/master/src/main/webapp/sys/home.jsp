@@ -61,8 +61,8 @@
                 <li class="nav-header">
                     <div class="dropdown profile-element" style="text-align: center;">
 
-                        <div style="font-size: 30px;font-weight: bold;color:white;">
-                            点餐系统
+                        <div style="font-size: 15px;font-weight: bold;color:white;">
+                            企业微信点餐系统后台管理
                         </div>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
@@ -71,7 +71,7 @@
                         </a>
                         <a class="changepw" href="javascript:openlog('修改密码','/sys/operator/operatorSpassword.shtml','550px','330px')">[修改密码]</a>
                     </div>
-                    <div class="logo-element">点餐系统
+                    <div class="logo-element">微信点餐
                     </div>
                 </li>
                 <li>
@@ -90,7 +90,7 @@
                         <span class="nav-label">系统管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="${ctx}/sys/menu/list.shtml">菜单管理</a>
+                            <a class="J_menuItem" href="${ctx}/sys/menu/index.shtml">菜单管理</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="table_data_tables.html">DataTables</a>

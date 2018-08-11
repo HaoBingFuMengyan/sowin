@@ -57,22 +57,22 @@
         </div>
         <div class="ibox-content">
             <div class="row">
-                <form:form id="inputForm" modelAttribute="data" action="${ctx}/sys/menu/save.shtml" method="post"
+                <form:form id="inputForm" modelAttribute="menu" action="${ctx}/sys/menu/save.shtml" method="post"
                            class="form-horizontal">
                     <form:hidden path="id"/>
-                    <form:hidden path="smenuno" value="${data.smenuno}"/>
-                    <form:hidden path="bisleaf" value="${data.bisleaf}"/>
-                    <form:hidden path="bisroot" value="${data.bisroot}"/>
+                    <form:hidden path="smenuno" value="${menu.smenuno}"/>
+                    <form:hidden path="bisleaf" value="${menu.bisleaf}"/>
+                    <form:hidden path="bisroot" value="${menu.bisroot}"/>
                     <%--<sys:message content="${message}"/>--%>
                     <table class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
                         <tbody>
                         <tr>
                             <td class="width-15 active"><label class="pull-right">上级菜单:</label></td>
-                            <td class="width-35"><sys:treeselect id="menu" name="sparentid" value="${data.sparentid}"
+                            <td class="width-35"><sys:treeselect id="menu" name="sparentid" value="${menu.sparentid}"
                                                                  labelName="parent.sname"
-                                                                 labelValue="${data.parent.sname}"
+                                                                 labelValue="${menu.parent.sname}"
                                                                  title="菜单" url="/sys/menu/treeData.shtml"
-                                                                 extId="${data.id}"
+                                                                 extId="${menu.id}"
                                                                  cssClass="form-control required"/></td>
                             <td class="width-15 active"><label class="pull-right"><font color="red">*</font> 名称:</label>
                             </td>
@@ -82,7 +82,7 @@
                         <tr>
                             <td class="width-15 active"><label class="pull-right">图标:</label></td>
                             <td class="width-35"><sys:iconselect id="icon" name="simagepath"
-                                                                 value="${data.simagepath}"/></td>
+                                                                 value="${menu.simagepath}"/></td>
                             <td class="width-15 active"><label class="pull-right">菜单链接:</label></td>
                             <td class="width-35"><form:input path="smenupath" htmlEscape="false" maxlength="2000"
                                                              class="form-control "/>
@@ -94,7 +94,7 @@
                             <td class="width-35"><form:textarea path="sremark" htmlEscape="false" rows="3"
                                                                 maxlength="200" class="form-control "/></td>
                             <td class="width-15 active"><label class="pull-right">排序:</label></td>
-                            <td class="width-35"><input name="isort" type="number" value="${data.isort}"
+                            <td class="width-35"><input name="isort" type="number" value="${menu.isort}"
                                                         class="form-control" autocomplete="off"/></td>
                         </tr>
                         </tbody>

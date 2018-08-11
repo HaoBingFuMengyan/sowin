@@ -141,7 +141,7 @@ public abstract class BaseController<T,V> {
     /**
      * 保存
      */
-    @RequestMapping(value = "save.shtml")
+    @RequestMapping(value = "dosave.shtml")
     protected String dosave(
             @RequestParam(value = "id", defaultValue = "") String id, Model model, RedirectAttributes rmodel,
             @Valid @ModelAttribute("model") V obj, ServletRequest reqeust) {

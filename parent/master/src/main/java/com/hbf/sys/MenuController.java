@@ -4,12 +4,18 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.hbf.jpa.BaseService;
 import com.hbf.web.BaseController;
+import com.hbf.web.Layer;
+import com.hbf.web.Msg;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -41,6 +47,72 @@ public class MenuController extends BaseController<Menu,Menu>{
         return "menu-list";
     }
 
+    /**
+     * 菜单列表
+     * @param model
+     * @return
+     */
+//    @RequiresPermissions("menu:list")
+    @RequestMapping(value="index.shtml")
+    public String list(Model model) {
+        List<Menu> list = Lists.newArrayList();
+        List<Menu> sourcelist = menuService.getAllMenu();
+        Menu.sortList(list, sourcelist, Menu.getRootId(), true);
+        model.addAttribute("list", list);
+        return getPackName()+"/"+getObjectName();
+    }
+
+    /**
+     * 编辑和查看
+     * @param menu
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "form.shtml")
+    public String form(Menu menu, Model model) {
+        // 获取排序号，最末节点排序号+30
+        if (!StringUtils.isBlank(menu.getId())){
+            menu = menuService.getMenuById(menu.getId());
+            if(menu!=null){
+                menu.setParent(menuService.getMenuById(menu.getSparentid()));
+            }
+        }else{
+            if(menu.getSparentid()!=null){//增加下级菜单
+                menu.setParent(menuService.getMenuById(menu.getSparentid()));
+            }else{//增加新菜单
+                menu.setParent(menuService.getMenuById("0"));
+            }
+
+        }
+        model.addAttribute("menu", menu);
+        return getPackName()+"/"+getObjectName()+"-detail";
+    }
+
+
+//    @RequiresPermissions("menu:edit")
+    @RequestMapping(value = "save.shtml")
+    public String save(Menu menu, Model model, RedirectAttributes redirectAttributes) throws Exception{
+
+        try {
+            if (menuService.isNameSame(menu.getSname(), menu.getParent().getId(), menu.getId())) {
+                Msg.error(redirectAttributes, "保存失败，菜单名称已存在！");
+            }
+            // 如果id为空就就添加
+            if (StringUtils.isBlank(menu.getId())) {
+                menu.setSparentid(menu.getParent().getId());// 添加父节点
+                menuService.saveMenu(menu, null);
+            } else {// 修改
+                menuService.saveMenu(menu, menu.getId());
+            }
+            Msg.success(model, "菜单保存成功！",1);
+            return Layer.close();
+        } catch (Exception ex) {
+            Msg.error(model, ex.getMessage());
+            model.addAttribute("menu", menu);
+            return getPackName()+"/"+getObjectName()+"-detail";
+        }
+
+    }
 
     /**
      * 菜单树
@@ -66,4 +138,8 @@ public class MenuController extends BaseController<Menu,Menu>{
         }
         return mapList;
     }
+
+
+
+
 }
