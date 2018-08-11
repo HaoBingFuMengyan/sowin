@@ -6,9 +6,10 @@
     <%--暂时没有装饰器--%>
     <%--<meta name="decorator" content="default"/>--%>
     <%@include file="/include/head.jsp"%>
+    <%@include file="/include/treetable.jsp" %>
     <script type="text/javascript">
         $(document).ready(function () {
-
+            $("#treeTable").treeTable({expandLevel : 1,column:1}).show();
         });
 
     </script>
@@ -58,7 +59,7 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${list}" var="menu">
-                    <tr pId="${menu.sparentid ne '0'?menu.sparentid:'0'}">
+                    <tr id="${menu.id}" pId="${menu.sparentid ne '0'?menu.sparentid:'0'}">
                         <td> <input type="checkbox" id="${menu.id}" value="${menu.id}" class="i-checks"></td>
                         <td nowrap><i class="icon-menu.icon"></i><a onclick="openlogView('查看菜单', '${ctx}/sys/menu/form.shtml?id=${menu.id}','1000px', '500px')">${menu.sname}</a></td>
                         <td >${menu.smenupath}</td>
