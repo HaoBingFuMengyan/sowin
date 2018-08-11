@@ -19,6 +19,7 @@
             	$("#${id}Icon").attr("class", "fa "+icon);
                 $("#${id}IconLabel").text(icon);
                 $("#${id}").val(icon);
+                top.layer.close(index);
 		    },cancel: function(index){ //或者使用btn2
 		    	
 		    }
