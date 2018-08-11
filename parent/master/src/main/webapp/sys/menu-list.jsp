@@ -60,7 +60,7 @@
                 <tbody>
                 <c:forEach items="${list}" var="menu">
                     <tr id="${menu.id}" pId="${menu.sparentid ne '0'?menu.sparentid:'0'}">
-                        <td> <input type="checkbox" id="${menu.id}" value="${menu.id}" class="i-checks"></td>
+                        <td> <input type="checkbox" value="${menu.id}" class="i-checks"></td>
                         <td nowrap><i class="icon-menu.icon"></i><a onclick="openlogView('查看菜单', '${ctx}/sys/menu/form.shtml?id=${menu.id}','1000px', '500px')">${menu.sname}</a></td>
                         <td >${menu.smenupath}</td>
                         <td style="text-align:center;">

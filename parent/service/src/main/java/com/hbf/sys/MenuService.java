@@ -4,6 +4,7 @@ import com.hbf.exception.ServiceException;
 import com.hbf.jpa.BaseDao;
 import com.hbf.jpa.BaseService;
 import com.hbf.utils.T;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -23,6 +24,9 @@ public class MenuService extends BaseService<Menu> {
 
     @Autowired
     private MenuDao menuDao;
+
+    @Autowired
+    private PurviewDao purviewDao;
 
     @Override
     protected BaseDao<Menu, String> getBaseDao() {
@@ -153,9 +157,56 @@ public class MenuService extends BaseService<Menu> {
             }
 
         } catch (Exception ex) {
-            //	LogUtils.log(ex.getMessage());
             ex.printStackTrace();
             throw new ServiceException("名称已存在！" + ex.getMessage());
         }
     }
+
+    /**
+     * 删除菜单
+     *
+     * @param checkboxId
+     */
+    public void deleteMune(String[] checkboxId) throws ServiceException {
+        String parent = null;
+        for (String id : checkboxId) {
+            if (StringUtils.isNotBlank(id)) {// 判断id不为空
+                List<Menu> lm = getMenuByParentId(id, "desc");
+                if (null != lm && lm.size() > 0) {
+                    throw new ServiceException("请先删除子节点！");
+                } else {
+                    List<Purview> lp = purviewDao.findBySparentid(id);
+                    if (lp.size() > 0) {
+                        for (Purview purview : lp) {// 先删除权限码
+                            purviewDao.delete(purview);
+                        }
+                    }
+                    try {
+                        if (parent == null) {
+                            Menu menu = getMenuById(id);
+                            if (menu != null) {
+                                parent = menu.getSparentid();
+                            }
+                        }
+                        menuDao.delete(id);
+                    } catch (Exception ex) {
+
+                        ex.printStackTrace();
+                        throw new ServiceException("删除菜单失败" + ex.getMessage());
+                    }
+                }
+                List<Menu> plm = menuDao.getMenuByParentId(parent, new Sort(Direction.DESC,"isort"));
+                if (plm.size() == 0) {
+                    Menu m = getMenuById(parent);
+                    m.setBisleaf(1);
+                    menuDao.save(m);
+                }
+            } else {
+                throw new ServiceException("节点id为空！");
+            }
+        }
+    }
+
+
+
 }

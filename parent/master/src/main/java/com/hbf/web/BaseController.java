@@ -181,7 +181,7 @@ public abstract class BaseController<T, V> {
     /**
      * Async删除
      */
-    @RequestMapping(value = "delete.json")
+    @RequestMapping(value = "dodelete.json")
     @ResponseBody
     protected ExtResult dodelete(
             @RequestParam(value = "ids") String[] ids)

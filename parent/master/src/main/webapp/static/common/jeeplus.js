@@ -492,7 +492,7 @@ function deleteSome(){
 	var flag = true;
 	var checkid=new Array();
 	if(ids == undefined || ids == ""){
-		$("input.i-checks:checked").each(function(i){
+		$("tbody input.i-checks:checked").each(function(i){
 			checkid[i]=$(this).val();
 		});
 		if(checkid.length <= 0){
@@ -512,12 +512,15 @@ function deleteSome(){
 			    	if(data.success){
 						 $.jBox.tip('操作成功！', 'info');
 						 for (var i=0;i<checkid.length;i++){
-							 $("#"+checkid[i]).parents("tr").hide(1000,function(){
-								 $("#"+checkid[i]).parents("tr").remove();
+							 $("#"+checkid[i]).hide(1000,function(){
+								 $("#"+checkid[i]).remove();
 							 });
 						 }
 					 }else{
-				    	 $.jBox.tip(data.msg, 'error');
+                        if(data.msg)
+                            $.jBox.tip(data.msg, 'error');
+                        else
+                            $.jBox.tip("未知错误,返回消息格式不正确!需要异步提交", 'error');
 				     }
 			    },
 			})
