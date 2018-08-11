@@ -68,7 +68,7 @@
                         <tbody>
                         <tr>
                             <td class="width-15 active"><label class="pull-right">上级菜单:</label></td>
-                            <td class="width-35"><sys:treeselect id="menu" name="sparentid" value="${menu.sparentid}"
+                            <td class="width-35"><sys:treeselect id="menu" name="parent.id" value="${menu.parent.id}"
                                                                  labelName="parent.sname"
                                                                  labelValue="${menu.parent.sname}"
                                                                  title="菜单" url="/sys/menu/treeData.shtml"
