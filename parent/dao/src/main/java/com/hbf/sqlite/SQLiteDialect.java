@@ -1,11 +1,12 @@
 package com.hbf.sqlite;
 
-import java.sql.Types;
 import org.hibernate.dialect.Dialect;
-import org.hibernate.dialect.function.StandardSQLFunction;
 import org.hibernate.dialect.function.SQLFunctionTemplate;
+import org.hibernate.dialect.function.StandardSQLFunction;
 import org.hibernate.dialect.function.VarArgsSQLFunction;
 import org.hibernate.type.StringType;
+
+import java.sql.Types;
 
 /**
  * SQLite 方言配置文件
@@ -13,6 +14,7 @@ import org.hibernate.type.StringType;
  */
 public class SQLiteDialect extends Dialect{
     public SQLiteDialect() {
+        super();
         registerColumnType(Types.BIT, "integer");
         registerColumnType(Types.TINYINT, "tinyint");
         registerColumnType(Types.SMALLINT, "smallint");
@@ -47,24 +49,24 @@ public class SQLiteDialect extends Dialect{
         return true;
     }
 
-  /*
-  public boolean supportsInsertSelectIdentity() {
-    return true; // As specify in NHibernate dialect
-  }
-  */
+        /*
+         public boolean supportsInsertSelectIdentity() {
+         return true; // As specify in NHibernate dialect
+         }
+         */
 
     public boolean hasDataTypeInIdentityColumn() {
         return false; // As specify in NHibernate dialect
     }
 
-  /*
-  public String appendIdentitySelectToInsert(String insertString) {
-    return new StringBuffer(insertString.length()+30). // As specify in NHibernate dialect
-      append(insertString).
-      append("; ").append(getIdentitySelectString()).
-      toString();
-  }
-  */
+        /*
+         public String appendIdentitySelectToInsert(String insertString) {
+         return new StringBuffer(insertString.length()+30). // As specify in NHibernate dialect
+         append(insertString).
+         append("; ").append(getIdentitySelectString()).
+         toString();
+         }
+         */
 
     public String getIdentityColumnString() {
         // return "integer primary key autoincrement";
@@ -79,11 +81,17 @@ public class SQLiteDialect extends Dialect{
         return true;
     }
 
-    protected String getLimitString(String query, boolean hasOffset) {
-        return new StringBuffer(query.length()+20).
-                append(query).
-                append(hasOffset ? " limit ? offset ?" : " limit ?").
-                toString();
+    /**
+     * 反向捆绑 Limit 参数
+     * @return boolean
+     */
+    public boolean bindLimitParametersInReverseOrder() {
+        return true;
+    }
+
+    public String getLimitString(String query, boolean hasOffset) {
+        return new StringBuffer(query.length() + 20).append(query).append(
+                hasOffset ? " limit ? offset ?" : " limit ?").toString();
     }
 
     public boolean supportsTemporaryTables() {
@@ -135,17 +143,20 @@ public class SQLiteDialect extends Dialect{
     }
 
     public String getDropForeignKeyString() {
-        throw new UnsupportedOperationException("No drop foreign key syntax supported by SQLiteDialect");
+        throw new UnsupportedOperationException(
+                "No drop foreign key syntax supported by SQLiteDialect");
     }
 
     public String getAddForeignKeyConstraintString(String constraintName,
                                                    String[] foreignKey, String referencedTable, String[] primaryKey,
                                                    boolean referencesPrimaryKey) {
-        throw new UnsupportedOperationException("No add foreign key syntax supported by SQLiteDialect");
+        throw new UnsupportedOperationException(
+                "No add foreign key syntax supported by SQLiteDialect");
     }
 
     public String getAddPrimaryKeyConstraintString(String constraintName) {
-        throw new UnsupportedOperationException("No add primary key syntax supported by SQLiteDialect");
+        throw new UnsupportedOperationException(
+                "No add primary key syntax supported by SQLiteDialect");
     }
 
     public boolean supportsIfExistsBeforeTableName() {

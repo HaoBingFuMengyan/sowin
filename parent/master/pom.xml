@@ -95,5 +95,27 @@
         </dependency>
     </dependencies>
 
+    <!--插件配置-->
+    <build>
+        <!--将应用打包成一个可运行的 jar包-->
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.hbf.MasterApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>
+                                repackage
+                            </goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
