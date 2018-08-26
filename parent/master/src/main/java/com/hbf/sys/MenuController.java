@@ -100,9 +100,9 @@ public class MenuController extends BaseController<Menu, Menu> {
             if (menuService.isNameSame(menu.getSname(), menu.getParent().getId(), menu.getId())) {
                 Msg.error(redirectAttributes, "保存失败，菜单名称已存在！");
             }
+            menu.setSparentid(menu.getParent().getId());// 添加父节点
             // 如果id为空就就添加
             if (StringUtils.isBlank(menu.getId())) {
-                menu.setSparentid(menu.getParent().getId());// 添加父节点
                 menuService.saveMenu(menu, null);
             } else {// 修改
                 menuService.saveMenu(menu, menu.getId());
