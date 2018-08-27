@@ -93,7 +93,7 @@
                             <a class="J_menuItem" href="${ctx}/sys/menu/index.shtml">菜单管理</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="${ctx}/role/index.shtml">DataTables</a>
+                            <a class="J_menuItem" href="${ctx}/role/list.shtml">DataTables</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="table_jqgrid.html">jqGrid</a>

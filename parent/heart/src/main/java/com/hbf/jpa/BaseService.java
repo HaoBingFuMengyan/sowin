@@ -47,6 +47,7 @@ public abstract class BaseService<T> {
                     getBaseDao().getDomainClass());
         } else
             spec = null;
+        System.out.println(getBaseDao());
         return getBaseDao().findAll(spec, page);
     }
 
